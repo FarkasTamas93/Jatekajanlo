@@ -1,0 +1,31 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="JatekAjanloProgram" transaction-type="RESOURCE_LOCAL">
+        <!-- Entity classes -->
+        <class>ajanlo.model.Jatekvalasztas</class>
+        <class>ajanlo.model.Jatekok</class>
+
+        <properties>
+            <!-- The JDBC URL to the database instance -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ertekeles2?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
+
+            <!-- A vezetek nelkuli halozati kapcsolat ipv4 cim kell-->
+            <!--remote server-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.72/ertekeles2?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+
+            <!-- The database username -->
+            <property name="javax.persistence.jdbc.user" value="root" />
+
+            <!--remote server felhasznalo-->
+            <!--<property name="javax.persistence.jdbc.user" value="root" />-->
+
+            <!-- The database password -->
+            <property name="javax.persistence.jdbc.password" value="helo" />
+
+            <!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
+
+        </properties>
+    </persistence-unit>
+</persistence>

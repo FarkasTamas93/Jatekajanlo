@@ -1,0 +1,61 @@
+package ajanlo.optimalisKereso;
+
+import ajanlo.KlaszterezettJatekokService;
+import ajanlo.model.Jatekok;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by Farkas Tamas on 2018.01.03..
+ */
+public class Problema {
+
+    public Allapot kezdo() {
+        return new Allapot();
+    }
+/*
+    static List<Operator> OPERATOROK = new ArrayList<Operator>();
+
+    static {
+        List<Jatekok> jatekok = JatekokNeveEsAra.getInstance().getJatekok();
+        Map<String,Double> klaszterezettjatekok = KlaszterezettJatekokService.getKlaszterezettJatekokService().getJatekokAtlagErtekelese();
+        List<String> klaszterezettJatekokNeve = new ArrayList<>();
+        for(Map.Entry map : klaszterezettjatekok.entrySet()){
+            klaszterezettJatekokNeve.add(map.getKey().toString());
+        }
+
+        for(int i=0;i<jatekok.size();i++){
+            for(int j=0;j<klaszterezettJatekokNeve.size();j++){
+                if(jatekok.get(i).getNev().equals(klaszterezettJatekokNeve.get(j))){
+                    OPERATOROK.add(new Operator(jatekok.get(i).getNev(),jatekok.get(i).getAr(),klaszterezettjatekok.get(jatekok.get(i).getNev())));
+                }
+            }
+        }
+    }
+*/
+    List<Operator> OPERATOROK = new ArrayList<Operator>();
+
+    {
+        List<Jatekok> jatekok = JatekokNeveEsAra.getInstance().getJatekok();
+        Map<String,Double> klaszterezettjatekok = KlaszterezettJatekokService.getKlaszterezettJatekokService().getJatekokAtlagErtekelese();
+        List<String> klaszterezettJatekokNeve = new ArrayList<>();
+        for(Map.Entry map : klaszterezettjatekok.entrySet()){
+            klaszterezettJatekokNeve.add(map.getKey().toString());
+        }
+
+        for(int i=0;i<jatekok.size();i++){
+            for(int j=0;j<klaszterezettJatekokNeve.size();j++){
+                if(jatekok.get(i).getNev().equals(klaszterezettJatekokNeve.get(j))){
+                    OPERATOROK.add(new Operator(jatekok.get(i).getNev(),jatekok.get(i).getAr(),klaszterezettjatekok.get(jatekok.get(i).getNev())));
+                }
+            }
+        }
+    }
+
+    public List<Operator> operatorok() {
+        return OPERATOROK;
+    }
+
+}
