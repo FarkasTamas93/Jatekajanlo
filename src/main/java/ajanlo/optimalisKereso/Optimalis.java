@@ -7,8 +7,19 @@ import java.util.List;
 /**
  * Created by Farkas Tamas on 2018.01.03..
  */
+
+/**
+ * az optimális keresőt megvalósító osztály.
+ *
+ */
 public class Optimalis {
 
+    /**
+     * a megoldást alkotó operátorlistát állítja elő.
+     *
+     * @param terminalis megkapja a cél csúcsot.
+     * @return visszatér a megoldáslistával.
+     */
     public List<Operator> megoldas(Csucs terminalis) {
         LinkedList<Operator> megoldas = new LinkedList<Operator>();
         for (Csucs cs = terminalis; cs.szulo != null; cs = cs.szulo)
@@ -16,6 +27,13 @@ public class Optimalis {
         return megoldas;
     }
 
+    /**
+     * az optimális kereső algoritmusa.
+     *
+     * @param p a probléma
+     * @param elkolthetoPenz az elkölthető pénzmennyiség
+     * @return visszatér a megoldással.
+     */
     public List<Operator> keres(Problema p,int elkolthetoPenz) {
         LinkedList<Csucs> nyiltak = new LinkedList<Csucs>();
         LinkedList<Csucs> zartak = new LinkedList<Csucs>();

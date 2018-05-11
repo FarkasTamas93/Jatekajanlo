@@ -8,6 +8,11 @@ import java.util.List;
 /**
  * Created by Farkas Tamas on 2018.01.03..
  */
+
+/**
+ * Az állapottér reprezentáció állapotait  reprezentáló osztály.
+ *
+ */
 public class Allapot {
 
     String jateknev;
@@ -15,6 +20,10 @@ public class Allapot {
     double atlag;
     double buntetes;
 
+    /**
+     * Paraméter nélküli konstruktor, amey beállítja a kezdőűllapot értékeit.
+     *
+     */
     public Allapot() {
         this.jateknev = "root";
         this.ar = 0;
@@ -26,6 +35,11 @@ public class Allapot {
 //        return vanAlkalmazhatoOperator;
 //    }
 
+    /**
+     * az állapotok kiiratását elősegítő felülírt toString metódus.
+     *
+     * @return visszatér a stringel
+     */
     @Override
     public String toString() {
         return "("+jateknev+","+ar+","+atlag + "," + buntetes +")";

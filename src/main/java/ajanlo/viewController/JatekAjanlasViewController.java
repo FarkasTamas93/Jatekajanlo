@@ -40,7 +40,11 @@ public class JatekAjanlasViewController {
     private TableColumn<Operator, Double> ajanlasTableViewC3;
 
     private Main mainApp;
-
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
@@ -84,6 +88,10 @@ public class JatekAjanlasViewController {
         }
     }
 
+    /**
+     * átvált a nézet a kiválasztott játékok érétkelésére.
+     *
+     */
     @FXML
     public void changeKivalasztottJatekokErtekelese(){
         mainApp.showKivalasztottJatekokErtekelese();

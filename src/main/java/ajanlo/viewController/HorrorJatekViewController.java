@@ -127,6 +127,11 @@ public class HorrorJatekViewController {
 
     private Main mainApp;
 
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }

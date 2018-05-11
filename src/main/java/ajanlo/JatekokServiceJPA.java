@@ -10,6 +10,11 @@ import java.util.List;
 /**
  * Created by Farkas Tamas on 2017.12.30..
  */
+
+/**
+ * Singleton osztály amely az adatbázis műveleteket valósítja meg.
+ *
+ */
 public class JatekokServiceJPA {
 
     EntityManager entityManager;
@@ -17,7 +22,7 @@ public class JatekokServiceJPA {
     /**
      * Egy paraméteres konstruktor.
      *
-     * @param entityManager
+     * @param entityManager A JpaService entity manager-ét várja
      */
     public JatekokServiceJPA(EntityManager entityManager) {
         this.entityManager = entityManager;

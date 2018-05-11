@@ -25,7 +25,11 @@ public class KivalasztottJatekokErtekeleseViewController {
     private static Logger logger = LoggerFactory.getLogger(KivalasztottJatekokErtekeleseViewController.class);
 
     private Main mainApp;
-
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }

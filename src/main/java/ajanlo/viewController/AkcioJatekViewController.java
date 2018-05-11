@@ -13,6 +13,11 @@ import java.util.*;
 /**
  * Created by Farkas Tamas on 2017.12.29..
  */
+
+/**
+ * az akció játékokat mutató nézet controllere.
+ *
+ */
 public class AkcioJatekViewController {
 
     Map<CheckBox, Label> jatekok = new HashMap<>();
@@ -125,6 +130,11 @@ public class AkcioJatekViewController {
 
     private Main mainApp;
 
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }

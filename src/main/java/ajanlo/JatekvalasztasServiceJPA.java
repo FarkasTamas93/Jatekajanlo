@@ -11,6 +11,11 @@ import java.util.List;
 /**
  * Created by Farkas Tamas on 2017.12.30..
  */
+
+/**
+ * singleton osztály, amey az adatbázis műveleteket valósítja meg.
+ *
+ */
 public class JatekvalasztasServiceJPA {
 
     EntityManager entityManager;
@@ -18,7 +23,7 @@ public class JatekvalasztasServiceJPA {
     /**
      * Egy paraméteres konstruktor.
      *
-     * @param entityManager
+     * @param entityManager A JpaService entity manager-ét várja
      */
     public JatekvalasztasServiceJPA(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -112,7 +117,7 @@ public class JatekvalasztasServiceJPA {
      * @param kiv3 a felhasználó által kiválasztott 3. játék
      * @param kiv4 a felhasználó által kiválasztott 4. játék
      * @param kiv5 a felhasználó által kiválasztott 5. játék
-     * @return visszatér az eredménylistával.
+     * @return visszatér az eredménylistával, ami azokat a jétékosokat tartalmazza, akik az 5 játékot biztosan értékelték.
      */
     public List<Jatekvalasztas> getHasonloJatekok(String kiv1,String kiv2,String kiv3,String kiv4,String kiv5) {
         Query query=null;

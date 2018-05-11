@@ -16,6 +16,12 @@ import java.io.IOException;
 /**
  * Created by Farkas Tamas on 2017.04.29..
  */
+
+/**
+ * A main osztály, mely kiterjeszti az Application osztályt, ettől lesz az alkalmazás JavaFX alkalmazás
+ * felülírja az init, start és stop metódusokat.
+ *
+ */
 public class Main extends Application {
 
     private static Logger logger = LoggerFactory.getLogger(Main.class);
@@ -23,14 +29,29 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
 
+    /**
+     * LEkéri a RootLayout-ot.
+     *
+     * @return visszatér a RootLayout-al
+     */
     public BorderPane getRootLayout() {
         return rootLayout;
     }
 
+    /**
+     * LEkéri a PrimaryStage-et.
+     *
+     * @return visszatér a PrimaryStage-el
+     */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * az alkalmazás inicializáló metódusa. Az adtabázis kalpcsolat felépítését végzi.
+     *
+     * @throws Exception
+     */
     @Override
     public void init() throws Exception {
         logger.info("Uj programfuttatas tortent");
@@ -41,6 +62,14 @@ public class Main extends Application {
         logger.info("Sikeres adatbazis kapcsolat letrehozas");
     }
 
+    /**
+     * A JavaFx alkalmazás belépési pontja. az init metódus után fut le.
+     * beállítja a primaryStage értékét, meghívja a RootLayout inicializációját,
+     * majd a választás scen-t tölti be.
+     *
+     * @param primaryStage a primaryStage értékét várja
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -48,6 +77,10 @@ public class Main extends Application {
         showValasztas();
     }
 
+    /**
+     * A rootLayout inicializálása.
+     *
+     */
     public void initRootLayout() {
         try {
             // Load root layout from view file.
@@ -68,6 +101,10 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Az akciójátékok Scene beállítása.
+     *
+     */
     public void showAkcioJatekValasztas() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -82,6 +119,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az horrorjátékok Scene beállítása.
+     *
+     */
     public void showHorrorJatekValasztas() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -96,6 +137,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az kalandjátékok Scene beállítása.
+     *
+     */
     public void showKalandJatekValasztas() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -110,6 +155,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az platformjátékok Scene beállítása.
+     *
+     */
     public void showPlatformJatekValasztas()
     {
         try {
@@ -125,6 +174,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az szerepjátékok Scene beállítása.
+     *
+     */
     public void showSzerepJatekValasztas()
     {
         try {
@@ -140,6 +193,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az ügyességijátékok Scene beállítása.
+     *
+     */
     public void showUgyessegiJatekValasztas()
     {
         try {
@@ -155,6 +212,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az szimulátorjátékok Scene beállítása.
+     *
+     */
     public void showSzimulatorJatekValasztas()
     {
         try {
@@ -170,6 +231,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * A kezdőképernyő Scene beállítása.
+     *
+     */
     public void showValasztas()
     {
         try {
@@ -185,6 +250,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az értékelés Scene beállítása.
+     *
+     */
     public void showKivalasztottJatekokErtekelese()
     {
         try {
@@ -200,6 +269,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Az játék ajánlás Scene beállítása.
+     *
+     */
     public void showAjanlas()
     {
         try {
@@ -215,6 +288,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Ez a metódus hívódik meg amikor a programnak le kell állnia.
+     *
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         JpaService.getJpaServiceInstance().getEntityManager().close();
@@ -222,6 +300,11 @@ public class Main extends Application {
         logger.info("Sikeres adatbazis kapcsolat lebontas");
     }
 
+    /**
+     * A program belépési pontja.
+     *
+     * @param args argumentum lista
+     */
     public static void main(String[] args) {
         launch(args);
     }

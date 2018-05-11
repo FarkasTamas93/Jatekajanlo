@@ -10,8 +10,18 @@ import java.util.Map;
 /**
  * Created by Farkas Tamas on 2018.01.03..
  */
+
+/**
+ * A proléma reprezentációja, mely megadja a kezdőállapotot és létrehozza az operátorok listáját.
+ *
+ */
 public class Problema {
 
+    /**
+     * a kezdőállapot létrehozása.
+     *
+     * @return visszatér egy új állapottal, melynek kezdőértékei beállítódnak.
+     */
     public Allapot kezdo() {
         return new Allapot();
     }
@@ -54,6 +64,11 @@ public class Problema {
         }
     }
 
+    /**
+     * lekéri az operátorokat.
+     *
+     * @return visszatér az  operátorlistával.
+     */
     public List<Operator> operatorok() {
         return OPERATOROK;
     }

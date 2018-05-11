@@ -10,6 +10,12 @@ import java.util.Random;
 /**
  * Created by Farkas Tamas on 2018.01.01..
  */
+
+/**
+ * Ez az osztály felel a teljes klaszterezési eljárásért,
+ * magába foglal mindent, ami ehhez szükséges.
+ *
+ */
 public class KKozepKlaszter {
     private int klaszterek_szama = 4;
     private int osszes_adat;
@@ -17,38 +23,85 @@ public class KKozepKlaszter {
     private ArrayList<Data> adatok = new ArrayList<Data>();
     private ArrayList<Centroid> klaszterkozepek = new ArrayList<Centroid>();
 
+    /**
+     * Lekéri, hogy hány db klasztert kell létrehozni.
+     *
+     * @return visszatér a létrehozandó klaszterek számával
+     */
     public int getKlaszterek_szama() {
         return klaszterek_szama;
     }
 
+    /**
+     * Beállítja, hogy hány klasztert kell létrehozni.
+     *
+     * @param klaszterek_szama a létrehozandó klaszterek számát várja
+     */
     public void setKlaszterek_szama(int klaszterek_szama) {
         this.klaszterek_szama = klaszterek_szama;
     }
 
+    /**
+     * lekéri az összes adat értékét.
+     *
+     * @return visszatér az összes adat értékével
+     */
     public int getOsszes_adat() {
         return osszes_adat;
     }
 
+    /**
+     * beállítja az összes adat érétkét.
+     *
+     * @param osszes_adat az összes adat értékét várja
+     */
     public void setOsszes_adat(int osszes_adat) {
         this.osszes_adat = osszes_adat;
     }
 
+    /**
+     * lekéri az Adatok értékét.
+     *
+     * @return visszatér az Adatok értékével
+     */
     public ArrayList<Data> getAdatok() {
         return adatok;
     }
 
+    /**
+     * Beállítja az Adatok értékét.
+     *
+     * @param adatok az Adatok értékét várja
+     */
     public void setAdatok(ArrayList<Data> adatok) {
         this.adatok = adatok;
     }
 
+    /**
+     * Lekéri a beállított klaszterközepeket.
+     *
+     * @return visszatér a kiválasztott klaszterközepekkel
+     */
     public ArrayList<Centroid> getKlaszterkozepek() {
         return klaszterkozepek;
     }
 
+    /**
+     * Beállítja a klaszterközepek értékét.
+     *
+     * @param klaszterkozepek a klaszterközepek értékét várja
+     */
     public void setKlaszterkozepek(ArrayList<Centroid> klaszterkozepek) {
         this.klaszterkozepek = klaszterkozepek;
     }
 
+    /**
+     * A létrehozandó klaszterek számának megfelelően
+     * előállít ugyan annyi véletlen számot, majd ezen számokat felhasználva
+     * ezen indexeken lévő játékértékeléseket kiválasztja kezdő klaszterközépnek.
+     *
+     * @param ertekek azon kiszűrt játékosokat kapja meg, akiknek azon 5 játékértékelése van csak megtartva, amit a felhasználó is értékelt
+     */
     public void initialize(List<Vec5KlaszterErtek> ertekek) {
         Random rand = new Random();
         List<Integer> randomSzamok = new ArrayList<>();
@@ -75,6 +128,12 @@ public class KKozepKlaszter {
     }
 
     //Teszteleshez hasznalom
+
+    /**
+     * A teszteléshez választja ki a klaszterközepeket.
+     *
+     * @param ertekek 5 játék értékelését kapja meg felhasználónként
+     */
     public void testInitialize(List<Vec5KlaszterErtek> ertekek) {
 
         for (int i = 0; i < klaszterek_szama; i++) {
@@ -83,6 +142,15 @@ public class KKozepKlaszter {
 
     }
 
+    /**
+     * Elvégzi a klaszterezést. Euklideszi algoritmus segítségével távolságot számol a
+     * klaszterközepek és a felhasználói értékelések között, amivel eldönti melyik
+     * klaszterbe kerüljön a játékos, majd minden egyes játékos elhelyezését követően az adott
+     * klaszter klaszterközepe újraszámolódik. Az utolsó  elem bekerülését követően
+     * az elemeket újravizsgáljuk és amíg van mozgás a klaszterek között, addig folytatódik az algoritmus.
+     *
+     * @param ertekek azon kiszűrt játékosokat kapja meg, akiknek azon 5 játékértékelése van csak megtartva, amit a felhasználó is értékelt
+     */
     public void kKozepKlaszterezes(List<Vec5KlaszterErtek> ertekek) {
 //        Timer timer = new Timer();
         TimerNano timer = new TimerNano();
@@ -195,6 +263,11 @@ public class KKozepKlaszter {
 //        }
     }
 
+    /**
+     * Kiválasztásra kerülnek azok a játékosok, akik az aktuális felhasználóval azonos klaszterbe kerültek.
+     *
+     * @return visszatér a felhasználóval egy klaszterbe került játékosokkal
+     */
     public List<KlaszterezettJatekosok> klaszterezettJatekosok() {
         Data ourData = new Data();
         for (int i = 0; i < adatok.size(); i++) {
@@ -213,6 +286,13 @@ public class KKozepKlaszter {
         return jatekosok;
     }
 
+    /**
+     * Az Euklideszi távolság kiszámítását megvalósító függvény.
+     *
+     * @param d öt értékelést tartalmazó adat(egy játékos értékelései)
+     * @param c egy klaszterközép
+     * @return Az euklideszi tévolság értékével tér vissza
+     */
     //Skalaris szorzat gyok alatt
     private double eukledesziTavolsag(Data d, Centroid c) {
         double newX = d.getX() - c.getX();
@@ -223,6 +303,13 @@ public class KKozepKlaszter {
         return Math.sqrt(newX * newX + newY * newY + newZ * newZ + neww * neww + newu * newu);
     }
 
+    /**
+     * Az Manhattan távolság kiszámítását megvalósító függvény.
+     *
+     * @param d öt értékelést tartalmazó adat(egy játékos értékelései)
+     * @param c egy klaszterközép
+     * @return Az Manhattan tévolság értékével tér vissza
+     */
     private double manhattanTavolsag(Data d, Centroid c) {
         double newX = d.getX() - c.getX();
         double newY = d.getY() - c.getY();
@@ -232,6 +319,10 @@ public class KKozepKlaszter {
         return Math.abs(newX) + Math.abs(newY) + Math.abs(newZ) + Math.abs(neww) + Math.abs(newu);
     }
 
+    /**
+     * Inner class. Arra szolgál, hogy megadjuk az értékelések struktúráját.
+     *
+     */
     private class Data {
         private double X = 0;
         private double Y = 0;
@@ -242,10 +333,23 @@ public class KKozepKlaszter {
         private int mCluster = 0;
         private String user;
 
+        /**
+         * Inner class paraméter nélküli konstruktora.
+         *
+         */
         public Data() {
 
         }
 
+        /**
+         * Inner class több paraméteres konstruktora.
+         *
+         * @param x Az 1. játékértékelés
+         * @param y A 2. játékértékelés
+         * @param z A 3. játékértékelés
+         * @param w A 4. játékértékelés
+         * @param u Az 5. játékértékelés
+         */
         public Data(double x, double y, double z, double w, double u) {
             this.setX(x);
             this.setY(y);
@@ -254,63 +358,136 @@ public class KKozepKlaszter {
             this.setU(u);
         }
 
+        /**
+         * Lekéri X érétkét.
+         *
+         * @return visszatér X értékével
+         */
         public double getX() {
             return X;
         }
 
+        /**
+         * Beállítja X értékét.
+         *
+         * @param x X értékét várja
+         */
         public void setX(double x) {
             X = x;
         }
 
+        /**
+         * Lekéri Y érétkét.
+         *
+         * @return visszatér Y értékével
+         */
         public double getY() {
             return Y;
         }
 
+        /**
+         * Beállítja Y értékét.
+         *
+         * @param y Y értékét várja
+         */
         public void setY(double y) {
             Y = y;
         }
 
+        /**
+         * Lekéri Z érétkét.
+         *
+         * @return visszatér Z értékével
+         */
         public double getZ() {
             return Z;
         }
 
+        /**
+         * Beállítja Z értékét.
+         *
+         * @param z Z értékét várja
+         */
         public void setZ(double z) {
             Z = z;
         }
 
+
+        /**
+         * Azt a klaszterszámot állítja be, amely bekerült az adott felhasználó.
+         *
+         * @param clusterNumber a klaszter számát várja
+         */
         public void cluster(int clusterNumber) {
             this.mCluster = clusterNumber;
         }
 
+        /**
+         * Lekéri a klaszter számát, amibe a játékos került.
+         *
+         * @return visszatér a klaszter számával
+         */
         public int cluster() {
             return this.mCluster;
         }
 
 
+        /**
+         * lekéri a felhasználó nevét.
+         *
+         * @return visszatér a felhasználó nevével
+         */
         public String getUser() {
             return user;
         }
 
+        /**
+         * Beéllítja a felhasználó nevét.
+         *
+         * @param user a felhasználó nevét várja
+         */
         public void setUser(String user) {
             this.user = user;
         }
-
+        /**
+         * Lekéri W érétkét.
+         *
+         * @return visszatér W értékével
+         */
         public double getW() {
             return W;
         }
 
+        /**
+         * Beállítja W értékét.
+         *
+         * @param w W értékét várja
+         */
         public void setW(double w) {
             W = w;
         }
-
+        /**
+         * Lekéri U érétkét.
+         *
+         * @return visszatér U értékével
+         */
         public double getU() {
             return U;
         }
-
+        /**
+         * Beállítja U értékét.
+         *
+         * @param u U értékét várja
+         */
         public void setU(double u) {
             U = u;
         }
 
+        /**
+         * Felülírt toString metódus az értékelések a klaszter száma és a felhasználó kiiratásához.
+         *
+         * @return
+         */
         @Override
         public String toString() {
             return "Data{" +
@@ -325,6 +502,10 @@ public class KKozepKlaszter {
         }
     }
 
+    /**
+     * inner class, amely arra szolgál, hogy megadjuk a klaszterközepek struktúráját.
+     *
+     */
     private class Centroid {
         private double X = 0.0;
         private double Y = 0.0;
@@ -332,10 +513,23 @@ public class KKozepKlaszter {
         private double W = 0.0;
         private double U = 0.0;
 
+        /**
+         * paraméter nélküli konstruktor.
+         *
+         */
         public Centroid() {
 
         }
 
+        /**
+         * többparaméteres konstruktor.
+         *
+         * @param x a klaszterközép 1. értékelése
+         * @param y a klaszterközép 2. értékelése
+         * @param z a klaszterközép 3. értékelése
+         * @param w a klaszterközép 4. értékelése
+         * @param u a klaszterközép 5. értékelése
+         */
         public Centroid(double x, double y, double z, double w, double u) {
             this.setX(x);
             this.setY(y);
@@ -344,46 +538,96 @@ public class KKozepKlaszter {
             this.setU(u);
         }
 
+        /**
+         * Lekéri az X értékét.
+         *
+         * @return visszatér X érétkével
+         */
         public double getX() {
             return X;
         }
 
+        /**
+         * Beállítja X értékét.
+         *
+         * @param x várja X értékét
+         */
         public void setX(double x) {
             X = x;
         }
-
+        /**
+         * Lekéri az Y értékét.
+         *
+         * @return visszatér Y érétkével
+         */
         public double getY() {
             return Y;
         }
 
+        /**
+         * Beállítja Y értékét.
+         *
+         * @param y várja Y értékét
+         */
         public void setY(double y) {
             Y = y;
         }
-
+        /**
+         * Lekéri az Z értékét.
+         *
+         * @return visszatér Z érétkével
+         */
         public double getZ() {
             return Z;
         }
 
+        /**
+         * Beállítja Z értékét.
+         *
+         * @param z várja Z értékét
+         */
         public void setZ(double z) {
             Z = z;
         }
-
+        /**
+         * Lekéri az W értékét.
+         *
+         * @return visszatér W érétkével
+         */
         public double getW() {
             return W;
         }
-
+        /**
+         * Beállítja W értékét.
+         *
+         * @param w várja W értékét
+         */
         public void setW(double w) {
             W = w;
         }
-
+        /**
+         * Lekéri az U értékét.
+         *
+         * @return visszatér U érétkével
+         */
         public double getU() {
             return U;
         }
 
+        /**
+         * Beállítja U értékét.
+         *
+         * @param u várja U értékét
+         */
         public void setU(double u) {
             U = u;
         }
 
+        /**
+         * felülírt toString metódus a klaszterközép értékeinek kiírásához.
+         *
+         * @return
+         */
         @Override
         public String toString() {
             return "Centroid{" +

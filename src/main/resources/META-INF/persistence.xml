@@ -14,12 +14,11 @@
             <!-- A vezetek nelkuli halozati kapcsolat ipv4 cim kell-->
             <!--remote server-->
             <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.72/ertekeles2?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+            <!--remote server egytemi cimem-->
+			<!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://172.22.8.1/ertekeles2?useSSL=false&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
 
             <!-- The database username -->
             <property name="javax.persistence.jdbc.user" value="" />
-
-            <!--remote server felhasznalo-->
-            <!--<property name="javax.persistence.jdbc.user" value="" />-->
 
             <!-- The database password -->
             <property name="javax.persistence.jdbc.password" value="" />
