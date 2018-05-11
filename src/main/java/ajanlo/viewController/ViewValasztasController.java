@@ -12,10 +12,21 @@ public class ViewValasztasController {
 
     private static ViewValasztasController instance = new ViewValasztasController();
 
+    /**
+     *megdja az osztály példányt.
+     *
+     * @return visszatér a példánnyal
+     */
     public static ViewValasztasController getInstance() {
         return instance;
     }
 
+    /**
+     * a kapott button id szerinti view-ot állítja be.
+     *
+     * @param mainApp mainapp
+     * @param buttonId buttonid
+     */
     public void viewValtas(Main mainApp,String buttonId){
         if(buttonId.equals("akcioButton")){
             mainApp.showAkcioJatekValasztas();
@@ -36,6 +47,12 @@ public class ViewValasztasController {
         }
     }
 
+    /**
+     * validáció, kötelező 5 játék megadására,
+     * hibaüzenetet ír kevés játék kiválasztása esetén.
+     *
+     * @param mainApp mainapp
+     */
     public void viewValtasErtekeles(Main mainApp){
         if(KivalasztottJatekokService.getInstance().getJatekNevek().size() != 5){
             Alert alert = new Alert(Alert.AlertType.ERROR);

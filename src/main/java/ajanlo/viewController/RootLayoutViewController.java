@@ -6,18 +6,29 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import ajanlo.Main;
 
-
+/**
+ *A rootLayout inicializálásáért felel.
+ *
+ */
 public class RootLayoutViewController {
 
     @FXML
     private MenuBar menuBar;
 
     private Main mainApp;
-
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
 
+    /**
+     * inicializálja a rootlayoutot.
+     *
+     */
     @FXML
     private void initialize()
     {

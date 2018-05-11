@@ -9,6 +9,10 @@ import javafx.scene.control.Button;
  * Created by Farkas Tamas on 2018.05.04..
  */
 
+/**
+ * a kezdőképernyő.
+ *
+ */
 public class ValasztasController {
 
     @FXML
@@ -33,11 +37,20 @@ public class ValasztasController {
     private Button szerepjatekButton;
 
     private Main mainApp;
-
+    /**
+     * beállítja a mainAppot.
+     *
+     * @param mainApp megkapja a mainApp-ot
+     */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
 
+    /**
+     * megkapja a button id-ját, majd annak a view-ja töltődik be.
+     *
+     * @param event megkapja az eseményt
+     */
     @FXML
     private void viewValasztas(ActionEvent event){
         String buttonId = ((Button)event.getSource()).getId();
