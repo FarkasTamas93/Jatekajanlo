@@ -17,6 +17,10 @@ import java.util.*;
 /**
  * Created by Farkas Tamas on 2017.12.31..
  */
+/**
+ * a kiválasztott 5 játék értékelése csúszkák segítségével.
+ *
+ */
 
 public class KivalasztottJatekokErtekeleseViewController {
 

@@ -8,6 +8,10 @@ import javafx.scene.control.Alert;
 /**
  * Created by Farkas Tamas on 2017.12.29..
  */
+/**
+ * a viewk közötti váltás nézet controllere.
+ *
+ */
 public class ViewValasztasController {
 
     private static ViewValasztasController instance = new ViewValasztasController();

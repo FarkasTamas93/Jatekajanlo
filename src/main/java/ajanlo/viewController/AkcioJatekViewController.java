@@ -139,6 +139,7 @@ public class AkcioJatekViewController {
         this.mainApp = mainApp;
     }
 
+
     private void jatekInit() {
         jatekok.put(bf1CheckBox, bf1Label);
         jatekok.put(owCheckBox, owLabel);

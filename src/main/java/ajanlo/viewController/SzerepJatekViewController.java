@@ -15,6 +15,10 @@ import java.util.*;
 /**
  * Created by Farkas Tamas on 2017.12.29..
  */
+/**
+ * a szerep játékokat mutató nézet controllere.
+ *
+ */
 public class SzerepJatekViewController {
 
     Map<CheckBox,Label> jatekok = new HashMap<>();

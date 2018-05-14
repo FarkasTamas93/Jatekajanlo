@@ -20,6 +20,10 @@ import java.util.Map;
 /**
  * Created by Farkas Tamas on 2018.01.01..
  */
+/**
+ * a játk ajánlás nézet controllere.
+ *
+ */
 public class JatekAjanlasViewController {
 
     private static Logger logger = LoggerFactory.getLogger(JatekAjanlasViewController.class);
